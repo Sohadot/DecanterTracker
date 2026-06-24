@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>DecanterTracker — The Opening Record Standard for High-Value Wine Service</title>
+  <meta name="description" content="DecanterTracker defines the opening record standard for high-value wine service: the accountable record of the moment a great bottle leaves custody and enters service." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://decantertracker.com/" />
+
+  <meta property="og:title" content="DecanterTracker — The Opening Record Standard" />
+  <meta property="og:description" content="A great bottle is made over years and opened in a moment. Its record should honor both." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://decantertracker.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* drawn directly from the DecanterTracker logo */
+      --wine-bg:#571821;        /* logo background — wine leather */
+      --wine-900:#3f0f17;
+      --wine-800:#4a131c;
+      --wine-700:#5c1a25;
+      --wine-600:#6b2230;
+
+      --ivory:#f1e8d8;
+      --ivory-soft:#d8cab4;
+      --ivory-dim:#b29c84;
+
+      --gold:#dbb874;          /* logo gold */
+      --gold-soft:#e8c98c;
+      --gold-deep:#b8924f;
+      --gold-dim:#8a6e42;
+
+      --line:rgba(219,184,116,.22);
+      --line-soft:rgba(241,232,216,.085);
+
+      --max:1180px;
+      --pad:clamp(22px,5vw,66px);
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --sans:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      color:var(--ivory);
+      font-family:var(--sans);
+      font-weight:300;
+      background:
+        radial-gradient(880px 520px at 78% 4%, rgba(219,184,116,.10), transparent 60%),
+        radial-gradient(720px 560px at 8% 8%, rgba(63,15,23,.55), transparent 64%),
+        linear-gradient(180deg, var(--wine-bg) 0%, var(--wine-700) 42%, var(--wine-900) 100%);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+    .serif{font-family:var(--serif)}
+
+    .skip{position:absolute;left:-999px;top:12px;background:var(--ivory);color:var(--wine-900);padding:10px 14px;border-radius:2px;z-index:999}
+    .skip:focus{left:12px}
+
+    /* ---------- header ---------- */
+    header{
+      position:sticky;top:0;z-index:30;
+      backdrop-filter:blur(14px);
+      background:linear-gradient(180deg,rgba(63,15,23,.86),rgba(63,15,23,.30));
+      border-bottom:1px solid rgba(219,184,116,.14);
+    }
+    .nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:13px}
+    .brand-mark{
+      width:40px;height:40px;border:1px solid var(--line);border-radius:50%;
+      display:grid;place-items:center;color:var(--gold);
+      font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.02em;
+      background:rgba(219,184,116,.05);
+    }
+    .brand-name{font-family:var(--serif);font-size:25px;font-weight:600;line-height:1;letter-spacing:.005em}
+    .brand-name span{color:var(--gold)}
+    .brand-sub{margin-top:5px;font-size:9px;letter-spacing:.30em;text-transform:uppercase;color:var(--ivory-dim);font-weight:400}
+    .nav-pill{border:1px solid var(--line);color:var(--ivory-soft);padding:8px 13px;font-size:10px;text-transform:uppercase;letter-spacing:.22em;white-space:nowrap;background:rgba(63,15,23,.25)}
+
+    /* ---------- hero ---------- */
+    .hero{
+      min-height:calc(100vh - 78px);
+      display:grid;
+      grid-template-columns:minmax(0,1.06fr) minmax(280px,.78fr);
+      gap:clamp(36px,6vw,80px);
+      align-items:center;
+      padding:clamp(64px,9vh,108px) 0 clamp(74px,11vh,124px);
+    }
+    .eyebrow{display:flex;align-items:center;gap:14px;color:var(--gold-soft);font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-bottom:30px}
+    .eyebrow::before{content:"";width:38px;height:1px;background:var(--gold-dim)}
+    .hero h1{
+      font-family:var(--serif);font-weight:500;
+      font-size:clamp(44px,7vw,84px);line-height:1.0;letter-spacing:-.015em;max-width:11ch;
+    }
+    .hero h1 em{font-style:italic;color:var(--gold-soft)}
+    .hero-thesis{margin-top:32px;max-width:600px;color:var(--ivory-soft);font-size:clamp(16px,1.9vw,20px);line-height:1.55;font-weight:300}
+    .hero-thesis strong{color:var(--ivory);font-weight:500}
+    .hero-rule{width:78px;height:1px;background:var(--line);margin:34px 0 22px}
+    .hero-note{max-width:560px;color:var(--ivory-dim);font-size:14.5px}
+
+    /* ---------- signature card: the logo ---------- */
+    .sig-card{
+      border:1px solid var(--line);
+      background:
+        radial-gradient(420px 360px at 50% 12%, rgba(219,184,116,.08), transparent 64%),
+        rgba(63,15,23,.26);
+      min-height:540px;display:flex;flex-direction:column;justify-content:space-between;
+      padding:30px;position:relative;overflow:hidden;
+    }
+    .sig-card::before{content:"";position:absolute;inset:16px;border:1px solid rgba(241,232,216,.05);pointer-events:none}
+    .sig-top{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);position:relative;z-index:1}
+    .sig-logo{position:relative;z-index:1;flex:1;display:grid;place-items:center;padding:14px 0}
+    .sig-logo img{width:min(100%,300px);height:auto;mix-blend-mode:lighten;filter:saturate(1.04)}
+    .sig-bottom{position:relative;z-index:1;border-top:1px solid var(--line);padding-top:18px}
+    .sig-bottom .k{color:var(--ivory);font-family:var(--serif);font-size:24px;font-weight:500;line-height:1.14;margin-bottom:9px}
+    .sig-bottom p{color:var(--ivory-dim);font-size:13.5px}
+
+    /* ---------- sections ---------- */
+    section{padding:clamp(70px,9vw,116px) 0;border-top:1px solid rgba(219,184,116,.15)}
+    .section-kicker{color:var(--gold);font-size:10.5px;letter-spacing:.30em;text-transform:uppercase;margin-bottom:16px}
+    .section-title{font-family:var(--serif);font-weight:500;font-size:clamp(31px,4.6vw,54px);line-height:1.06;letter-spacing:-.01em;max-width:20ch;margin-bottom:26px}
+    .section-lede{max-width:760px;color:var(--ivory-soft);font-size:clamp(16px,1.7vw,19px);font-weight:300}
+
+    .split{display:grid;grid-template-columns:.88fr 1.12fr;gap:clamp(32px,6vw,80px);align-items:start}
+    .prose p{color:var(--ivory-soft);margin-bottom:18px;max-width:66ch;font-weight:300}
+    .prose strong{color:var(--ivory);font-weight:500}
+    .pull{margin-top:30px;padding-left:24px;border-left:1px solid var(--gold);font-family:var(--serif);color:var(--ivory);font-size:clamp(23px,2.8vw,34px);line-height:1.24;max-width:680px;font-weight:500}
+    .pull em{color:var(--gold-soft);font-style:italic;font-weight:500}
+
+    /* reference layer cards */
+    .factory-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--line-soft);gap:1px;margin-top:42px}
+    .factory-card{background:rgba(63,15,23,.50);padding:28px;min-height:215px}
+    .factory-card .n{font-family:var(--serif);font-style:italic;color:var(--gold-dim);margin-bottom:18px;font-size:16px}
+    .factory-card h3{font-family:var(--serif);font-weight:500;color:var(--ivory);font-size:24px;line-height:1.12;margin-bottom:12px}
+    .factory-card p{color:var(--ivory-dim);font-size:14px}
+
+    /* boundary */
+    .boundary{border:1px solid var(--line);background:linear-gradient(135deg,rgba(219,184,116,.07),transparent 42%),rgba(63,15,23,.50);padding:clamp(30px,5vw,56px)}
+    .boundary-line{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4vw,46px);line-height:1.12;max-width:900px;margin-bottom:32px}
+    .boundary-line span{color:var(--gold-soft);font-style:italic}
+    .boundary-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+    .boundary-cell{background:rgba(63,15,23,.60);padding:28px}
+    .boundary-cell .label{font-size:10px;letter-spacing:.27em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+    .boundary-cell:nth-child(2) .label{color:#d99aa6}
+    .boundary-cell p{color:var(--ivory-dim);font-size:14.5px}
+
+    /* clauses */
+    .clauses{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:42px}
+    .clause{background:rgba(74,19,28,.48);padding:clamp(26px,3vw,38px)}
+    .clause:last-child{grid-column:1/-1}
+    .clause .cn{color:var(--gold-dim);font-family:var(--serif);font-style:italic;margin-bottom:13px;font-size:15px}
+    .clause h3{color:var(--ivory);font-family:var(--serif);font-weight:500;font-size:25px;margin-bottom:11px;line-height:1.12}
+    .clause p{color:var(--ivory-dim);font-size:14.5px}
+
+    /* completeness levels */
+    .levels{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);background:var(--line-soft);gap:1px;margin-top:42px}
+    .level{background:rgba(63,15,23,.56);padding:25px 20px;min-height:200px}
+    .level .r{color:var(--gold-soft);font-family:var(--serif);font-size:30px;font-weight:500;line-height:1;margin-bottom:16px}
+    .level h3{color:var(--ivory);font-size:12.5px;line-height:1.25;letter-spacing:.07em;text-transform:uppercase;margin-bottom:11px;font-weight:500}
+    .level p{color:var(--ivory-dim);font-size:13px;line-height:1.5}
+
+    /* read card */
+    .read-card{border:1px solid var(--line);background:radial-gradient(760px 340px at 50% 0%, rgba(219,184,116,.09), transparent 66%),rgba(63,15,23,.54);padding:clamp(34px,6vw,66px);text-align:center}
+    .read-card .micro{color:var(--gold);font-size:10.5px;letter-spacing:.30em;text-transform:uppercase;margin-bottom:26px}
+    .read-card p{font-family:var(--serif);font-weight:400;color:var(--ivory);font-size:clamp(25px,3.6vw,42px);line-height:1.38;max-width:24ch;margin:0 auto}
+    .read-card b{color:var(--gold-soft);font-weight:500}
+    .read-card .discipline{margin-top:26px;color:var(--ivory-dim);font-size:14px;font-family:var(--sans);letter-spacing:.03em}
+
+    /* audiences */
+    .audiences{display:flex;flex-wrap:wrap;gap:11px;margin-top:36px}
+    .aud{border:1px solid var(--line);color:var(--ivory-soft);padding:10px 15px;font-size:13px;background:rgba(63,15,23,.30);transition:color .3s,border-color .3s}
+    .aud:hover{color:var(--ivory);border-color:var(--gold-deep)}
+
+    /* availability */
+    .availability{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line);margin-top:42px}
+    .availability > div{background:rgba(63,15,23,.58);padding:clamp(28px,4vw,46px)}
+    .availability h3{font-family:var(--serif);font-weight:500;color:var(--ivory);font-size:30px;line-height:1.1;margin-bottom:15px}
+    .availability p{color:var(--ivory-dim);font-size:14.5px;max-width:56ch;margin-bottom:16px}
+    .availability .contact{display:inline-block;margin-top:6px;color:var(--gold-soft);border-bottom:1px solid rgba(219,184,116,.40);font-size:14px;letter-spacing:.03em;padding-bottom:2px}
+    .availability .contact:hover{border-color:var(--gold)}
+
+    /* footer */
+    footer{border-top:1px solid var(--line);padding:46px 0 58px;background:rgba(63,15,23,.34)}
+    .footer-grid{display:flex;justify-content:space-between;gap:28px;align-items:flex-end;flex-wrap:wrap}
+    .footer-brand{font-family:var(--serif);font-size:27px;font-weight:600;color:var(--ivory)}
+    .footer-brand span{color:var(--gold)}
+    .footer-sub{margin-top:7px;color:var(--ivory-dim);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-family:var(--sans)}
+    .footer-meta{color:var(--ivory-dim);font-size:11px;letter-spacing:.18em;text-transform:uppercase;line-height:2;text-align:right}
+
+    /* reveal */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:980px){
+      .hero,.split,.availability{grid-template-columns:1fr}
+      .sig-card{min-height:440px;order:-1}
+      .factory-grid{grid-template-columns:repeat(2,1fr)}
+      .levels{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:680px){
+      .nav{align-items:flex-start;flex-direction:column;padding:18px 0;gap:14px}
+      .nav-pill{display:none}
+      .hero{padding-top:48px}
+      .factory-grid,.clauses,.boundary-grid,.levels{grid-template-columns:1fr}
+      .clause:last-child{grid-column:auto}
+      .footer-meta{text-align:left}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .reveal{opacity:1;transform:none;transition:none}
+      html{scroll-behavior:auto}
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="/" aria-label="DecanterTracker home">
+        <div class="brand-mark" aria-hidden="true">DT</div>
+        <div>
+          <div class="brand-name">Decanter<span>Tracker</span></div>
+          <div class="brand-sub">Opening Record Standard</div>
+        </div>
+      </a>
+      <div class="nav-pill">DT-ORS-001 · Public Reference</div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="DecanterTracker introduction">
+        <div>
+          <div class="eyebrow">The Opening Record Standard</div>
+          <h1>A great bottle is made <em>over years</em> and opened in a moment.</h1>
+          <div class="hero-rule"></div>
+          <p class="hero-thesis">
+            <strong>Its record should honor both.</strong>
+            DecanterTracker defines the opening record standard for high-value wine service:
+            the accountable record of the moment a serious bottle leaves custody and enters service.
+          </p>
+          <p class="hero-note">
+            Not inventory. Not a tasting note. Not valuation. DecanterTracker governs the single
+            irreversible service event most wine systems leave undocumented: the opening itself.
+          </p>
+        </div>
+
+        <aside class="sig-card" aria-label="DecanterTracker">
+          <div class="sig-top">Years · Custody · Opening · Closure</div>
+          <div class="sig-logo">
+            <img src="logo.jpg" alt="DecanterTracker — a decanter drawn in a single continuous line, a custody thread tracing through it to the moment of the pour" />
+          </div>
+          <div class="sig-bottom">
+            <div class="k">The moment of opening is not a detail.</div>
+            <p>It is the state transition where a bottle stops being held and begins being witnessed.</p>
+          </div>
+        </aside>
+      </section>
+    </div>
+
+    <section>
+      <div class="wrap split reveal">
+        <div>
+          <div class="section-kicker">The category gap</div>
+          <h2 class="section-title">The most deliberate bottle often leaves the least deliberate record.</h2>
+        </div>
+        <div class="prose">
+          <p>
+            Wine systems are strongest before service: ownership, storage, inventory,
+            tasting opinion, market value, and provenance reference. Their logic is built
+            around the bottle as something held, listed, valued, reviewed, or stored.
+          </p>
+          <p>
+            DecanterTracker begins at the moment those systems fall silent: the cork.
+            Opening a high-value bottle is not merely consumption. It is an accountable
+            service event involving authority, condition, witnesses, sequence, incident
+            posture, and closure.
+          </p>
+          <p class="pull">
+            The bottle may become an experience. The record must remain <em>deliberate</em>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap reveal">
+        <div class="section-kicker">Reference layer</div>
+        <h2 class="section-title">Not built as a wine site. Built as a reference layer.</h2>
+        <p class="section-lede">
+          The asset creates value by defining the missing category, governing its language,
+          publishing its standard, and making the operational record intelligible to elite service contexts.
+        </p>
+
+        <div class="factory-grid">
+          <article class="factory-card">
+            <div class="n">i.</div>
+            <h3>Doctrine</h3>
+            <p>A great bottle is made over years and opened in a moment. Its record should honor both.</p>
+          </article>
+          <article class="factory-card">
+            <div class="n">ii.</div>
+            <h3>Standard</h3>
+            <p>DT-ORS-001 defines the clauses of a complete high-value bottle opening record.</p>
+          </article>
+          <article class="factory-card">
+            <div class="n">iii.</div>
+            <h3>Boundary</h3>
+            <p>The record attests. It does not adjudicate, authenticate, insure, appraise, or settle.</p>
+          </article>
+          <article class="factory-card">
+            <div class="n">iv.</div>
+            <h3>Use Logic</h3>
+            <p>Private cellars, sommeliers, fine dining, estates, yachts, villas, and collector events.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap reveal">
+        <div class="boundary">
+          <div class="section-kicker">The custody boundary</div>
+          <p class="boundary-line">
+            The record <span>attests</span>. It does not <span>adjudicate</span>.
+          </p>
+          <div class="boundary-grid">
+            <div class="boundary-cell">
+              <div class="label">The record holds</div>
+              <p>
+                What bottle was opened, in what condition, by whom, under what authority,
+                before whom, how it was served, what incident occurred, and how the event closed.
+              </p>
+            </div>
+            <div class="boundary-cell">
+              <div class="label">The record withholds</div>
+              <p>
+                Who was at fault, whether a guest was right, whether provenance is authentic,
+                what the bottle is worth, or whether any party owes another a remedy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap reveal">
+        <div class="section-kicker">DT-ORS-001</div>
+        <h2 class="section-title">Seven clauses of a complete opening record.</h2>
+        <p class="section-lede">
+          Each clause is observational. None is a verdict. The discipline is to make the event readable
+          without pretending to become the judge of the event.
+        </p>
+
+        <div class="clauses">
+          <article class="clause">
+            <div class="cn">Clause one</div>
+            <h3>The Opening Authority</h3>
+            <p>Who had permission to open the bottle: owner present, standing instruction, service order, event protocol, or cellar exit authorization.</p>
+          </article>
+          <article class="clause">
+            <div class="cn">Clause two</div>
+            <h3>Pre-Opening Condition</h3>
+            <p>Fill level, closure, label, capsule, sediment, seepage, anomaly, and provenance reference already on file — described, never graded.</p>
+          </article>
+          <article class="clause">
+            <div class="cn">Clause three</div>
+            <h3>The Witness Principle</h3>
+            <p>Before whom the bottle was opened: owner, host, principal, guest, sommelier, service team, or a recorded absence of witness.</p>
+          </article>
+          <article class="clause">
+            <div class="cn">Clause four</div>
+            <h3>The Service Record</h3>
+            <p>Time opened, whether decanted, when poured, to whom served, and any relevant service conditions such as temperature or sequence.</p>
+          </article>
+          <article class="clause">
+            <div class="cn">Clause five</div>
+            <h3>Fault &amp; Incident Posture</h3>
+            <p>Corked, oxidized, declined, wrong bottle, unauthorized exit, undocumented condition — stated as observed, never decided as fault.</p>
+          </article>
+          <article class="clause">
+            <div class="cn">Clause six</div>
+            <h3>Consumption Closure</h3>
+            <p>Consumed, partially consumed, returned, unfinished, discarded, lost, or unaccounted — the event ends visibly, not by silence.</p>
+          </article>
+          <article class="clause">
+            <div class="cn">Clause seven</div>
+            <h3>Record Integrity</h3>
+            <p>Made at the time of the event, attributed to a named operator, amended only visibly, and self-contained enough to be read without hidden context.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap reveal">
+        <div class="section-kicker">Record completeness model</div>
+        <h2 class="section-title">A record can be weaker or stronger without becoming a verdict.</h2>
+        <p class="section-lede">
+          DecanterTracker reads completeness — not truthfulness, value, or legal liability.
+          The levels make the strength of the account visible.
+        </p>
+
+        <div class="levels">
+          <article class="level"><div class="r">R0</div><h3>Unrecorded Opening</h3><p>The bottle was opened with no structured account of the event.</p></article>
+          <article class="level"><div class="r">R1</div><h3>Self-Declared</h3><p>The event is described by one party, with minimal structure.</p></article>
+          <article class="level"><div class="r">R2</div><h3>Condition-Logged</h3><p>Pre-opening condition and service facts are recorded.</p></article>
+          <article class="level"><div class="r">R3</div><h3>Witnessed</h3><p>Named witness context is included in the record.</p></article>
+          <article class="level"><div class="r">R4</div><h3>Authorized Service Record</h3><p>Authority, sequence, condition, witness, and closure are all present.</p></article>
+          <article class="level"><div class="r">R5</div><h3>Institutional Attestation</h3><p>The record is created under a formal cellar, service, event, or institutional protocol.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap reveal">
+        <div class="read-card">
+          <div class="micro">How an opening record is read</div>
+          <p>
+            What bottle, in <b>what condition</b>, opened by <b>whom</b>, under <b>what authority</b>,
+            before <b>whom</b>, how served, with <b>what incident</b>, reaching <b>what end</b>.
+          </p>
+          <div class="discipline">
+            Every element an observation. Not one a verdict. That is the whole discipline.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap split reveal">
+        <div>
+          <div class="section-kicker">Where it belongs</div>
+          <h2 class="section-title">For places where a bottle is not merely opened, but entrusted.</h2>
+        </div>
+        <div>
+          <p class="section-lede">
+            DecanterTracker serves the contexts where service, discretion, value, and accountability meet.
+            The market is not mass. It is narrow, wealthy, ritualized, and difficult to enter — which is precisely
+            why a governed reference layer becomes defensible once established.
+          </p>
+          <div class="audiences">
+            <span class="aud">Private sommeliers</span>
+            <span class="aud">Cellar managers</span>
+            <span class="aud">Fine-dining wine service</span>
+            <span class="aud">Estate managers</span>
+            <span class="aud">Household managers</span>
+            <span class="aud">Yacht hospitality</span>
+            <span class="aud">Villa hospitality</span>
+            <span class="aud">Collector tastings</span>
+            <span class="aud">Wine consultants</span>
+            <span class="aud">Luxury service teams</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap reveal">
+        <div class="section-kicker">Strategic availability</div>
+        <h2 class="section-title">Maintained as a governed reference asset, not a commodity domain.</h2>
+        <p class="section-lede">
+          DecanterTracker is positioned for a narrow class of qualified conversations:
+          protocol partnership, pilot implementation, licensing, or acquisition where the buyer understands
+          the value of owning the opening record layer for high-value wine service.
+        </p>
+
+        <div class="availability">
+          <div>
+            <h3>Qualified use conversations</h3>
+            <p>
+              For private cellar operations, high-value wine service, luxury hospitality,
+              collector events, or service teams that need a disciplined opening record.
+            </p>
+            <a class="contact" href="mailto:agent@sohadot.com">agent@sohadot.com</a>
+          </div>
+          <div>
+            <h3>Qualified acquisition conversations</h3>
+            <p>
+              DecanterTracker may be considered for strategic acquisition where the name,
+              standard, category thesis, and reference layer strengthen an existing wine,
+              cellar, hospitality, or service-accountability platform.
+            </p>
+            <a class="contact" href="mailto:agent@sohadot.com">Strategic inquiry</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <div class="footer-brand">Decanter<span>Tracker</span></div>
+        <div class="footer-sub">Opening Record Standard</div>
+      </div>
+      <div class="footer-meta">
+        DT-ORS-001 · v1 · Public Reference<br />
+        Governed Reference Asset
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const io=new IntersectionObserver((es)=>{
+      es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+    },{threshold:0.16});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
